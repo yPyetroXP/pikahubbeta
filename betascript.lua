@@ -10,13 +10,12 @@ imageButton.Position = UDim2.new(0, 10, 0, 10) -- Define a posição do botão
 imageButton.Image = "rbxassetid://17591781966" -- Substitua pelo ID da imagem que você deseja usar
 imageButton.BackgroundTransparency = 1 -- Torna o fundo do botão transparente
 
--- Função que simula a pressão da tecla "LeftControl"
 local function simulateLeftControl()
     local VirtualUser = game:GetService("VirtualUser")
     VirtualUser:CaptureController()
-    VirtualUser:SetKeyDown("0xA2") -- 0xA2 é o código para a tecla LeftControl
+    VirtualUser:SetKeyDown(Enum.KeyCode.LeftControl) -- Usa a enumeração correta para a tecla
     wait(0.1) -- Tempo que a tecla será "segurada"
-    VirtualUser:SetKeyUp("0xA2")
+    VirtualUser:SetKeyUp(Enum.KeyCode.LeftControl)
 end
 
 -- Conecta a função ao evento de clique do botão
