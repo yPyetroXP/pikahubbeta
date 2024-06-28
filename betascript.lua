@@ -1,3 +1,27 @@
+-- Cria um novo ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.CoreGui
+
+-- Cria um novo ImageButton
+local imageButton = Instance.new("ImageButton")
+imageButton.Parent = screenGui
+imageButton.Size = UDim2.new(0, 100, 0, 100) -- Define o tamanho do botão
+imageButton.Position = UDim2.new(0, 10, 0, 10) -- Define a posição do botão
+imageButton.Image = "rbxassetid://17591781966" -- Substitua pelo ID da imagem que você deseja usar
+imageButton.BackgroundTransparency = 1 -- Torna o fundo do botão transparente
+
+-- Função que simula a pressão da tecla "LeftControl"
+local function simulateLeftControl()
+    local VirtualUser = game:GetService("VirtualUser")
+    VirtualUser:CaptureController()
+    VirtualUser:SetKeyDown("0xA2") -- 0xA2 é o código para a tecla LeftControl
+    wait(0.1) -- Tempo que a tecla será "segurada"
+    VirtualUser:SetKeyUp("0xA2")
+end
+
+-- Conecta a função ao evento de clique do botão
+imageButton.MouseButton1Click:Connect(simulateLeftControl)
+
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
