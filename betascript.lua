@@ -2,24 +2,13 @@
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = game.CoreGui
 
--- Cria um novo ImageButton
-local imageButton = Instance.new("ImageButton")
-imageButton.Parent = screenGui
-imageButton.Size = UDim2.new(0, 100, 0, 100) -- Define o tamanho do botão
-imageButton.Position = UDim2.new(0, 10, 0, 10) -- Define a posição do botão
-imageButton.Image = "rbxassetid://17591781966" -- Substitua pelo ID da imagem que você deseja usar
-imageButton.BackgroundTransparency = 1 -- Torna o fundo do botão transparente
-
-local function simulateLeftControl()
-    local VirtualUser = game:GetService("VirtualUser")
-    VirtualUser:CaptureController()
-    VirtualUser:SetKeyDown(Enum.KeyCode.LeftControl) -- Usa a enumeração correta para a tecla
-    wait(0.1) -- Tempo que a tecla será "segurada"
-    VirtualUser:SetKeyUp(Enum.KeyCode.LeftControl)
-end
-
--- Conecta a função ao evento de clique do botão
-imageButton.MouseButton1Click:Connect(simulateLeftControl)
+-- Cria um novo ImageButton para ToggleUI
+local toggleButton = Instance.new("ImageButton")
+toggleButton.Parent = screenGui
+toggleButton.Size = UDim2.new(0, 100, 0, 100) -- Define o tamanho do botão
+toggleButton.Position = UDim2.new(0, 10, 0, 10) -- Define a posição do botão
+toggleButton.Image = "rbxassetid://17591781966" -- Substitua pelo ID da imagem que você deseja usar
+toggleButton.BackgroundTransparency = 1 -- Torna o fundo do botão transparente
 
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
@@ -41,6 +30,14 @@ local Tabs = {
 }
 
 local Options = Fluent.Options
+
+-- Função que alterna a visibilidade da janela
+local function toggleUI()
+    Window:Toggle()
+end
+
+-- Conecta a função ao evento de clique do botão
+toggleButton.MouseButton1Click:Connect(toggleUI)
 
 do
     Fluent:Notify({
